@@ -18,6 +18,7 @@ def scrape_direct(url,directory=None):
             print(f'{len(links[quality])} Download links')
             if input('Do you wish to download the files? Y/n: ') == 'Y':
                 downloads(links[quality],threads=None,directory=directory)
+                break
             else:   
                 return links[quality]
         except KeyError:
