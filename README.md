@@ -30,4 +30,5 @@ download(url,threads=None,directory=None)
 
 Download the video file if directory is set, it will saved from the location where it was set(`directory`)
 
-Feel free to PR.
+
+**Feel free to PR.**
