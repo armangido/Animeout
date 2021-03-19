@@ -30,7 +30,7 @@ def scrape_mega(url,json=False):
         links = json.dumps(links)
     return links
 
-def downloads(urls,threads=2,directory=None,interval=120):
+def downloads(urls,threads=2,directory=None):
     for url in urls:
         download(url,threads=threads,directory=directory)
 
