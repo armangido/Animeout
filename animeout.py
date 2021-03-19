@@ -9,31 +9,28 @@ import time
 
 kill_threads = False
 
-def scrape_direct(url,json=False):
+def scrape_direct(url,directory=None):
     links = Animeout()._scrape_ddl(url)
-    if json == True:
-        links = json.dumps(links)
     qualities = [quality for quality in links.keys()]
     while True:
         quality = input(f'What quality you want? {qualities}: ')
         try:
             print(f'{len(links[quality])} Download links')
-            return links[quality]
+            if input('Do you wish to download the files? Y/n: ') == 'Y':
+                downloads(links[quality],threads=None,directory=directory)
+            else:   
+                return links[quality]
         except KeyError:
             print('Quality not found try again')
             time.sleep(2)
             continue
 
-def scrape_mega(url,json=False):
+def scrape_mega(url):
     links = Animeout()._scrape_mega(url)
-    if json == True:
-        links = json.dumps(links)
     return links
-
 def downloads(urls,threads=2,directory=None):
     for url in urls:
         download(url,threads=threads,directory=directory)
-
 def download(url,threads=None,directory=None):
     if directory is not None and os.path.exists(directory):
         print(f'Changing Directory from {os.getcwd()} at {directory}')
